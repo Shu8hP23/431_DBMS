@@ -1,0 +1,38 @@
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+}
+
+nav{
+    background-color: beige;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.card {
+    box-sizing: border-box;
+}
+
+.card-body {
+    border: 1px solid red;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#title{
+    font-size: 30px;
+}
+
+#icons{
+    width: 30px;
+    height: 30px;
+    /* background-color; */
+}
+
+
