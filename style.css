@@ -29,10 +29,21 @@ nav{
     font-size: 30px;
 }
 
-#icons{
-    width: 30px;
-    height: 30px;
-    /* background-color; */
-}
 
+nav{
+    background-color: beige;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.shopping-list {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+    height: 100vh;
+    margin: 0;
+}
 

@@ -5,8 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="style.css">
+<script src="app.js"></script>
+
+<nav>
+   
+    <h1 id="title"><a href="/index.html">E-Commerce</a></h1>
+    
+    <div>
+        <a href="/profile.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/></a>
+        <a href="/new_user.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/></a>
+        <a href="/cart.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
+ 
+    </div>
+    
+</nav>
+
+   
+
 <body>
-    <h1>in user</h1>
+
+    <div class="shopping-list"></div>
+   
     
 </body>
+
+<script>
+    var container = document.querySelector('.shopping-list');
+    for(var i = 1; i < 9; i++){
+        var card = document.createElement('div');
+        card.classList.add('card2');
+
+        card.innerHTML = `
+            <div class ="main-item">
+                <div class="card-body">
+                    <div class="column-1">
+                        <img src= '/Assets/Image_${i}.jpeg' class="images" height="100" width="100">
+                        <a class="prod-name">Prod Name</a>
+                        <h5 class="card-title">Product ID: ${i}</h5>
+                    </div>
+                    <div class="info">
+                        
+                        <p class="prod-price">$100</p>
+                        
+                     </div>
+                <div> 
+                    <h3> Hello </h3>    
+                </div> 
+               
+            
+            </div>
+        `;
+
+        
+        container.appendChild(card);
+    }
+
+
+</script>
+
+<style>
+    .shopping-list {
+        position: relative;
+            display: grid;
+            flex-direction: row;
+
+            justify-content: space-evenly;
+            
+        }
+        .column-1{
+            display: grid;
+            flex-direction: column;
+        }
+        .main-item{
+            justify-content: space-evenly;
+        }
+        .card-body{
+            display: flex;
+            flex-direction: row;
+            
+            
+        }     
+        h3{
+        margin-left: 100px;
+    }
+</style>
+
 </html>

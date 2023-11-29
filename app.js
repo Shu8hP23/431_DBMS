@@ -2,7 +2,7 @@ var container = document.querySelector('.cards-container');
 
 for (var i = 1; i < 9; i++) {
 
-    // makes a div for each copy
+
     var card = document.createElement('div');
     card.classList.add('card');
 
@@ -19,3 +19,5 @@ for (var i = 1; i < 9; i++) {
     
     container.appendChild(card);
 }
+
+
