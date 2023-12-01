@@ -19,7 +19,7 @@
     }
 
     $sql = "INSERT INTO users (firstName, lastName, email)
-        VALUES ('$firstName', '$lastName', '$email')";
+        VALUES ('firstName', 'lastName', 'email')";
 
     // echo $sql;
 
