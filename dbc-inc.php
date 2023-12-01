@@ -28,7 +28,8 @@
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
+// Pushing this files
     $conn->close();
 
 ?>
+
