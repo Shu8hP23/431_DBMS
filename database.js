@@ -1,12 +1,19 @@
 const {createPool} = require('mysql');
 
-const pool = createPool({
+var pool = createPool({
     host: "localhost",
-    user: "",
+    user: "root",
     passowrd:"",
-    database: "test",
-    port: 3300,
+    database: "DBMS",
+    port: 3306,
     
 })
 
-pool.query
+pool.query ('SELECT * FROM Users', function (error, results, fields) {
+    if (error)
+        throw error;
+    
+    result.forEach(result => {
+        console.log (result);
+    });
+});
