@@ -1,34 +1,26 @@
 <?php
 
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $email = $_POST["email"];
-    // $phone = $_POST["phone"];
+    $sellerid = $_POST["seller_id"];
+    $selleremail = $_POST["seller_email"];
+    $prod_name = $_POST["prod-name"];
+    $prod_desc = $_POST["prod-description"];
+    $company = $_POST["company"];
+    $prod_price = $_POST["price"];
+    $prod_quantity = $_POST["quantity"];
 
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "test";
 
-    // Create connection
-    $conn = mysqli_connect($host, $username, $password, $dbname);
 
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    $sql = "INSERT INTO users (firstName, lastName, email)
-        VALUES ('firstName', 'lastName', 'email')";
-
-    // echo $sql;
-
+    $sql = "INSERT INTO Products (Seller_ID, Seller_Email, Prod_Name, Prod_Description, Company, price, quantity)
+        VALUES ('$sellerid', '$selleremail', '$prod_name', '$prod_desc', '$company', '$prod_price', '$prod_quantity')";
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
+       
+        header("Location: home.php");
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-// Pushing this files
+
     $conn->close();
 
 ?>

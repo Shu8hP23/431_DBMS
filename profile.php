@@ -12,7 +12,7 @@
 
 <nav>
    
-    <h1 id="title"><a href="/index.html">E-Commerce</a></h1>
+    <h1 id="title"><a href="/431_DBMS/home.php">E-Commerce</a></h1>
     
     <div>
         <a href="/profile.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/></a>
@@ -23,48 +23,20 @@
     
 </nav>
 
+
+
    
 
 <body>
 
-    <div class="shopping-list"></div>
+    <h1>Order History</h1>
+    
+   
    
     
 </body>
 
-<script>
-    var container = document.querySelector('.shopping-list');
-    for(var i = 1; i < 9; i++){
-        var card = document.createElement('div');
-        card.classList.add('card2');
 
-        card.innerHTML = `
-            <div class ="main-item">
-                <div class="card-body">
-                    <div class="column-1">
-                        <img src= '/Assets/Image_${i}.jpeg' class="images" height="100" width="100">
-                        <a class="prod-name">Prod Name</a>
-                        <h5 class="card-title">Product ID: ${i}</h5>
-                    </div>
-                    <div class="info">
-                        
-                        <p class="prod-price">$100</p>
-                        
-                     </div>
-                <div> 
-                    <h3> Hello </h3>    
-                </div> 
-               
-            
-            </div>
-        `;
-
-        
-        container.appendChild(card);
-    }
-
-
-</script>
 
 <style>
     .shopping-list {
