@@ -1,5 +1,8 @@
 <?php
 
+    include 'config.php';
+
+
     $sellerid = $_POST["seller_id"];
     $selleremail = $_POST["seller_email"];
     $prod_name = $_POST["prod-name"];
@@ -12,13 +15,13 @@
 
     $sql = "INSERT INTO Products (Seller_ID, Seller_Email, Prod_Name, Prod_Description, Company, price, quantity)
         VALUES ('$sellerid', '$selleremail', '$prod_name', '$prod_desc', '$company', '$prod_price', '$prod_quantity')";
-    if ($conn->query($sql) === TRUE) {
+    if ($connection->query($sql) === TRUE) {
         echo "New record created successfully";
        
         header("Location: home.php");
 
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $connection->error;
     }
 
     $conn->close();

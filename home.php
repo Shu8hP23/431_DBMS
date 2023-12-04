@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +9,13 @@
 <link rel="stylesheet" href="style.css">
 
 <nav>
-    <h1 id="title"><a href="/index.html">E-Commerce</a></h1>
+    <h1 id="title"><a href="/431_DBMS/home.php">E-Commerce</a></h1>
     
     <div>
-        <a href="/431_DBMS/profile.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/></a>
-        <a href="/431_DBMS/cart.html"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
-        <a href="/431_DBMS/new_user.html">Add a user</a>
+        <a href="/431_DBMS/request_form.html"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/application-form.png" /></a>
+        
+        <a href="/431_DBMS/shopping-cart.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
+        <a href="/431_DBMS/new_user.html"><img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/</a>
  
     </div>
     
@@ -43,30 +43,21 @@
         </tr>
         <?php
             
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "ecommerce";
-
-            $conn = mysqli_connect($host, $username, $password, $dbname);
-
-
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-
+            include 'config.php';
+            
             $sql = "SELECT * FROM Products";
-            $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($connection, $sql);
 
-            if ($conn->query($sql) === FALSE) {
+            if ($connection->query($sql) === TRUE) {
                 echo "New record created successfully";
                
                
              
             } 
             while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row["Product_ID"];
                 echo "<tr> 
-                    <td>" .$row["Product_ID"]. "</td>
+                    <td>" .$id. "</td>
                     <td>" .$row["Seller_ID"]."</td>
                     <td>" .$row["Seller_Email"]. "</td>
                     <td>" .$row["Prod_Name"]. "</td>
@@ -75,9 +66,13 @@
                     <td>" .$row["price"]. "</td>
                     <td>" .$row["quantity"]. "</td>
                     
-                    <td><Button><a href='".$row["User_ID"]."'>Edit</a></Button></td>
-                    <td><Button><a href=''>Delete</a></Button></td>
-                    <td><Button><a href='".$row["User_ID"]."'>Add to Cart</a></Button></td>
+                    <td><Button><a href='delete_prod.php?deleteid=".$row["Product_ID"]."'>Delete</a></Button></td>
+                    <td><button><a href='dbc-delete.php?deleteid=".$row["Product_ID"]."'>Edit</a></button></td>
+
+                    <td><Button><a href='addtocart.php?addedid=".$id."'>Add to Cart</a></Button></td>
+
+
+
 
           
                 
@@ -88,6 +83,8 @@
         <?php 
             }
         ?>
+
+        
     </table>
     
   

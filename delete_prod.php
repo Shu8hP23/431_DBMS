@@ -3,18 +3,15 @@
    include 'config.php';
 
 
-    $userid = $_GET['deleteid'];  
+    $prod_id = $_GET['deleteid'];  
     
-    $sql = "DELETE FROM Users WHERE Usernum = $userid";
-    // $sql = "DELETE FROM Users WHERE USER_ID = '$userid'";
-
+    $sql = "DELETE FROM Products WHERE Product_ID = $prod_id";
 
     $result = mysqli_query($connection,$sql);
 
-
     if ($connection->query($sql) === TRUE) {
         echo "Deleted successfully";
-        header("Location: view.php");
+        header("Location: home.php");
        
 
     } else {
@@ -23,7 +20,6 @@
         
     }
     
-
     $connection->close();
 
 

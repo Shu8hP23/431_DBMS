@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        
-    </form>
-</body>
-</html>
+<?php
+include 'config.php';
+
+    $userid = $_POST['userid'];
+    $orderid = $_POST['orderid'];
+    $message = $_POST['message'];
+
+    $query = "INSERT INTO HelpRequest(usernum, orderid, challenges) 
+            VALUES ($userid, '$orderid','$message')";
+
+    if ($connection->query($query) === TRUE) {
+        echo "New user created successfully";
+        header("Location: view.php");
+    } else {
+        echo "Error";
+        echo "Error: " . $query . "<br>" . $connection->error;
+    }
+
+    $connection->close();
+?>

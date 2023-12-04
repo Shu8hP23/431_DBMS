@@ -27,22 +27,12 @@
     
     <?php
 
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "ecommerce";
-
-    $conn = mysqli_connect($host, $username, $password, $dbname);
-
-
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+    include 'config.php';
 
     $sql = "SELECT * FROM Shopping_Cart";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($connection, $sql);
 
-    if ($conn->query($sql) === FALSE) {
+    if ($connection->query($sql) === TRUE) {
         echo "New record created successfully";
     
     
