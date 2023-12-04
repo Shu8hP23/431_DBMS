@@ -65,6 +65,7 @@
                     
                 
                     <td><Button><a href='updateuser.php?updateid=".$id."'>Edit</a></Button></td>
+                    
                     <td><button><a href='dbc-delete.php?deleteid=".$id."'>Delete</a></button></td>
                 </tr>"
         ?>

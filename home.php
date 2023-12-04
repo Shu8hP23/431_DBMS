@@ -16,12 +16,14 @@
         
         <a href="/431_DBMS/shopping-cart.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
         <a href="/431_DBMS/new_user.html"><img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/</a>
- 
+        <a href="/431_DBMS/add-product.html">Add Product</a>
     </div>
     
 </nav>
 
 <body>
+
+
     
 
     <table align="center" border="1px" style="width:600px; line-height:40px">
@@ -30,26 +32,27 @@
         </tr>
         <tr>
             <th>Product ID</th>
-            <th>Seller ID</th>
-            <th>Seller Email</th>
+            <
             <th>Name</th>
             <th>Description</th>
             <th>Company</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Edit</th>
             <th>Delete</th>
+            <th>Edit</th>
+            
             <th>Add</th>
+            
         </tr>
         <?php
             
             include 'config.php';
             
-            $sql = "SELECT * FROM Products";
+            $sql = "SELECT * FROM Product_Information";
             $result = mysqli_query($connection, $sql);
 
             if ($connection->query($sql) === TRUE) {
-                echo "New record created successfully";
+                echo "successfully";
                
                
              
@@ -58,30 +61,24 @@
                 $id = $row["Product_ID"];
                 echo "<tr> 
                     <td>" .$id. "</td>
-                    <td>" .$row["Seller_ID"]."</td>
-                    <td>" .$row["Seller_Email"]. "</td>
+                    
                     <td>" .$row["Prod_Name"]. "</td>
                     <td>" .$row["Prod_Description"]."</td>
                     <td>" .$row["Company"]."</td>
-                    <td>" .$row["price"]. "</td>
-                    <td>" .$row["quantity"]. "</td>
+                    <td>" .$row["Price"]. "</td>
+                    <td>" .$row["Quantity"]. "</td>
                     
-                    <td><Button><a href='delete_prod.php?deleteid=".$row["Product_ID"]."'>Delete</a></Button></td>
-                    <td><button><a href='dbc-delete.php?deleteid=".$row["Product_ID"]."'>Edit</a></button></td>
+                    <td><Button><a href='delete_prod.php?deleteid=".$id."'>Delete</a></Button></td>
+                    
+                    <td><button><a href='edit-product.php?editid=".$id."'>Edit</a></button></td>
 
                     <td><Button><a href='addtocart.php?addedid=".$id."'>Add to Cart</a></Button></td>
-
-
-
-
-          
-                
-
                 </tr>"
         ?>
            
         <?php 
             }
+            $connection->close();
         ?>
 
         
@@ -89,37 +86,6 @@
     
   
 
-    <div>
-        <form action="dbc-inc.php" method="post">
-            <h2>Add a Product</h2>
-    
-            <label for="seller_id">Seller ID:</label>
-            <input type="text" id="seller_id" name="seller_id">
-
-            <label for="seller_email">Seller Email:</label>
-            <input type="text" name="seller_email">
-
-            <label for="prod-name">Product Name:</label>
-            <input type="text" name="prod-name">
-
-            <label for="prod-description">Description:</label>
-            <input type="text" name="prod-description">
-
-            <label for="company">Company:</label>
-            <input type="text" id="email" name="company">
-
-            <label for="prod-name">Price:</label>
-            <input type="text" id="firstName" name="price">
-
-            <label for="prod-description">Quantity:</label>
-            <input type="text" id="lastName" name="quantity">
-
-            <button type="submit">Submit</button>
-            
-            </form>
-        
-    </div>
-    
 
 
 </body>

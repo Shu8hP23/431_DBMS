@@ -1,44 +1,60 @@
 <?php
-include 'config.php';
+    include 'config.php';
 
+    $userid = $_POST['userid'];
     $prod_id = $_POST['product_id'];
     $rating = $_POST['rating'];
     $content = $_POST['content'];
     $time = $_POST['time'];
-    $userid = $_POST['userid'];
+    
 
-    $count = "SELECT COUNT(*) as count_pet FROM Reviews";
-    $result23 = mysqli_query($connection, $count);
+    $countquery = "SELECT COUNT(*) as countme FROM Reviews";
+    $result23 = mysqli_query($connection, $countquery);
     
 
     $row = mysqli_fetch_assoc($result23);
-    $count = $row['count_pet'];
+    $count = $row['countme'];
 
-    echo "Count of records in ReviewInformation: $count";
+    // echo "Count of records in ReviewInformation: $count\n";
 
-    $increment === $count + 1;
+    $increment = ($count + 1); // don't use this... use auto increment
+    // so you dont have to worry about it.
 
-    echo "Count of records in ReviewInformation: $increment";
+    echo "New Count: $increment <br>";
+    echo "New rating: $rating <br>";
+    echo "New content: $content<br>";
+    echo "New time: $time <br>";
 
+
+    echo "New Count 2: $increment <br>";
+    echo "New userid 2: $userid <br>";
+    echo "New product 2: $prod_id <br>";
+
+    $query = "INSERT INTO Reviews(User_ID, Product_ID)
+    VALUES($userid, $prod_id)"; 
+
+    $result = mysqli_query($connection, $query);
     
-    $query = "INSERT INTO ReviewInformation(Review_ID, Rating, Content, curr_time) 
-            VALUES ($increment, $rating, '$content', '$time')";
-    
-    $query2 = "INSERT INTO Reviews(Review_ID, Userid, Product_ID)
-            VALUES($increment, $userid, $product_id)"; 
+    if ($result) {
+        $query2 = "INSERT INTO Review_Information(Rating, Content, MyTime) 
+        VALUES ($rating, '$content', '$time')";
 
-    
+        $result2 = mysqli_query($connection, $query2);
 
-    if ($connection->query($query) === TRUE) {
-
-        if($connection->query($query2) === TRUE) {
+        if ($result2) {
+            echo "In result2";
             echo "New user created successfully";
             header("Location: view.php");
+            exit;
+        } else {
+            echo "In result3";
+            echo "Error: " . $query . "<br>" . $connection->error;
         }
     } else {
-        echo "Error";
+        echo "In result3";
         echo "Error: " . $query . "<br>" . $connection->error;
     }
 
     $connection->close();
 ?>
+

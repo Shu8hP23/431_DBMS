@@ -117,7 +117,7 @@
             <input type="email" id="email" name="email" value="<?php echo $designated_row['Email']; ?>">
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password2" value="<?php echo $designated_row['First_Name']; ?>">
+            <input type="password" id="password" name="password2" value="<?php echo $designated_row['mypassword']; ?>">
 
             <label for="phone">Phone Number:</label>
             <input type="phone" id="phone_num" name="phone" value="<?php echo $designated_row['Phone_Number'] ?>">

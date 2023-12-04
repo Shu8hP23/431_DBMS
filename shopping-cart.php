@@ -24,8 +24,8 @@
     </nav>
 
     <div style="margin-top: 20px;">
-        <button id="checkoutFail">Checkout (Fail)</button>
-        <button id="checkoutSuccess">Checkout (Success)</button>
+        <button id="checkoutFail"><a href="">Checkout (Fail)</a></button>
+        <button id="checkoutFail"><a href="checkout-success.php">Checkout (Success)</a></button>
     </div>
 
     <section>
@@ -41,46 +41,42 @@
             <!-- SQL: SELECT Product_ID, Quantity FROM Shopping_Cart WHERE Shopping_Cart.User_ID = currentUserID;-->
             <table align="center" border="1px" style="width:600px; line-height:40px">
                 <tr>
-                    <th colspan="7">
+                    <th colspan="8">
                         <h2>List of Products</h2>
                     </th>
                 </tr>
                 <tr>
-                    <th>Product ID</th>
-
                     <th>Name</th>
-                    <th>Description</th>
-                    <th>Company</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Total</th>
 
-                    <th>Delete</th>
+
                 </tr>
                 <?php
                 include 'config.php';
-                $sql = "SELECT * FROM Shopping_Cart, Products 
-                        WHERE Shopping_Cart.Product_ID = Products.Product_ID
-                        GROUP BY Shopping_Cart.Product_ID";
-
+                $sql = "SELECT Prod_Name, Price, SUM(Quantity) as TotalQuantity, SUM(Total_Price) as TotalPrice FROM User_Cart_Items GROUP BY Prod_Name;";
+      
                 $result = mysqli_query($connection, $sql);
 
+                $total = 0;
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row["Product_ID"];
+                        
+                        $total +=  $row["Price"] * $row["TotalQuantity"];
                         echo "<tr> 
-                                <td>" . $id . "</td>
                                 <td>" . $row["Prod_Name"] . "</td>
-                                <td>" . $row["Prod_Description"] . "</td>
-                                <td>" . $row["Company"] . "</td>
-                                <td>" . $row["price"] . "</td>
-                                <td>" . $row["Quantity"] . "</td>
-                                <td><button><a href='dbc-delete.php?deleteid=" . $id . "'>Delete</a></button></td>
+                                <td>" . $row["Price"] . "</td>
+                                <td>" . $row["TotalQuantity"] . "</td>
+                                <td>" . $row["TotalPrice"] . "</td>
+                                
                             </tr>";
                     }
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($connection);
                 }
 
+                echo "<h1>" . $total . "</h1>";
                 $connection->close();
                 ?>
             </table>

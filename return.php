@@ -2,7 +2,7 @@
 
     include 'config.php';
     
-    $Product_ID =  $_GET['addedid'];
+    $Order_ID =  $_GET['addedid'];
 
     $prod_name = "SELECT * FROM `Product_Information` WHERE Product_ID = $Product_ID;";
     $result = mysqli_query($connection, $prod_name);
