@@ -1,7 +1,7 @@
 <?php
 
     include 'config.php';
-    echo "Hello";
+
     
 
     // $counter = "SELECT Order_ID, Prod_Name FROM Order_History_Information;";
