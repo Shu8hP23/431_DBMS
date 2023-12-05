@@ -11,17 +11,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<nav>
+    <h1 id="title"><a href="/431_DBMS/home.php">E-Commerce</a></h1>
+    
+    <div>
+        <a href="/431_DBMS/request_form.html"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/application-form.png" /></a>
+        
+        <a href="/431_DBMS/shopping-cart.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
+        <a href="/431_DBMS/new_user.html">new User</a>
+        <a href="/431_DBMS/add-product.html">Add Product</a>
+        <a href="/431_DBMS/profile.php"><img id="icons" src="https://img.icons8.com/ios-filled/50/user.png"/></a>
+    </div>
+    
+</nav>
+
+
 <body>
 
-    <nav>
-        <h1 id="title"><a href="/431_DBMS/home.php">E-Commerce</a></h1>
-
-        <div>
-            <a href="/431_DBMS/view.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png" /></a>
-            <a href="/431_DBMS/shopping-cart.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png" /></a>
-        </div>
-
-    </nav>
+ 
 
     <div style="margin-top: 20px;">
         <button id="checkoutFail"><a href="">Checkout (Fail)</a></button>

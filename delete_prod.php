@@ -5,13 +5,23 @@
 
     $prod_id = $_GET['deleteid'];  
     
-    $sql = "DELETE FROM Products WHERE Product_ID = $prod_id";
+    $sql = "DELETE FROM Product_Seller_Information WHERE Product_ID = $prod_id";
 
     $result = mysqli_query($connection,$sql);
 
-    if ($connection->query($sql) === TRUE) {
-        echo "Deleted successfully";
-        header("Location: home.php");
+    if ($result) {
+        
+        
+        $sql2 = "DELETE FROM Product_Information WHERE Product_ID = $prod_id";
+       
+        $result2 = mysqli_query($connection,$sql2);
+
+        if($result2) {
+            header("Location: home.php");
+        }
+        else{
+            echo "ERROR";
+        }
        
 
     } else {

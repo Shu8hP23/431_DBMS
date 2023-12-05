@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-
-    <nav>
+<nav>
         <h1 id="title"><a href="/431_DBMS/home.php">E-Commerce</a></h1>
 
         <div>
             <a href="/431_DBMS/view.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/user.png" /></a>
-            <a href="/431_DBMS/shopping-cart.php"> <img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png" /></a>
+            <a href="/431_DBMS/shopping-cart.php"><img id="icons" src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/></a>
         </div>
-
     </nav>
+<body>
+
+   
     <table align="center" border="1px" style="width:600px; line-height:40px">
         <tr>
             <th colspan="12"><h2>User's Database</h2></th>

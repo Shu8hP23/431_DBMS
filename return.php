@@ -1,41 +1,36 @@
 <?php
 
     include 'config.php';
+    echo "Hello";
     
-    $Order_ID =  $_GET['addedid'];
 
-    $prod_name = "SELECT * FROM `Product_Information` WHERE Product_ID = $Product_ID;";
-    $result = mysqli_query($connection, $prod_name);
+    // $counter = "SELECT Order_ID, Prod_Name FROM Order_History_Information;";
+    // $counter = "SELECT Order_ID, User_ID FROM Order_History;";
+    
+    // $counter = "SELECT Product_ID FROM Product_Information";
 
-    if ($result) {
-        $userid = 1;
-        $row = $result->fetch_assoc();
-        $prod_name = $row['Prod_Name'];
-        $prod_price = $row['Price'];
-        $prod_quantity = 1;
-        $prod_total_price = $prod_quantity * $prod_price;
+    $counter = "SELECT 
+                Order_History_Information.Order_ID,
+                Order_History_Information.Prod_Name,
+                Order_History.User_ID,
+                Product_Information.Product_ID
+            FROM 
+                Order_History_Information
+            INNER JOIN 
+                Product_Information ON Order_History_Information.Prod_Name = Product_Information.Prod_Name
+            INNER JOIN 
+                Order_History ON Order_History_Information.Order_ID = Order_History.Order_ID";
 
-        // echo $userid, $prod_name, $prod_price, $prod_quantity, $prod_total_price;
 
-        $sql2 = "INSERT INTO User_Cart_Items (User_ID, Prod_Name, Price, Quantity, Total_Price)
-            VALUES ('$userid', '$prod_name', '$prod_price', '$prod_quantity', '$prod_total_price')";
-        
-        $result2 = mysqli_query($connection, $sql2);
+    $result = mysqli_query($connection, $counter);
 
-        if ($result2) {
-            echo "In result2";
-            echo "Added to Cart";
-            header("Location: shopping-cart.php");
-            exit;
-        } else {
-            echo "In result3";
-            echo "Error: " . $query . "<br>" . $connection->error;
-        }
-
-    } else {
-        echo "Error";
-        echo "Error: " . $sql . "<br>" . $connection->error;
+    while ($row = mysqli_fetch_assoc($result)) {
+        print_r($row);
     }
+    echo $result;
+    echo "hello3";
+    
+    
 
     $connection->close();
 

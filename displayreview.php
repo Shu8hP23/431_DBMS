@@ -20,7 +20,6 @@
     <a href="/431_DBMS/new_user.html">new User</a>
         <a href="/431_DBMS/add-product.html">Add Product</a>
         <a href="/431_DBMS/reviews.html">Post Review</a>
-        <a href="/431_DBMS/view.php">All Users</a>
     </div>
     
 </nav>
@@ -47,48 +46,47 @@
             <th>Review</th>
             
         </tr>
-        <?php
+<?php
+    include 'config.php';
+
+    $id = $_GET['reviewid'];
+
+    $query = "SELECT * FROM Reviews, Review_Information
+    WHERE Reviews.ReviewID = '$id'";
+
+    $result = mysqli_query($connection, $query);
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row["Product_ID"];
+        echo "<tr> 
+            <td>" .$id. "</td>
             
-            include 'config.php';
+            <td>" .$row["Prod_Name"]. "</td>
+            <td>" .$row["Prod_Description"]."</td>
+            <td>" .$row["Company"]."</td>
+            <td>" .$row["Price"]. "</td>
+            <td>" .$row["Quantity"]. "</td>
+
+
             
-            $sql = "SELECT * FROM Product_Information";
-            $result = mysqli_query($connection, $sql);
+            <td><Button><a href='delete_prod.php?deleteid=".$id."'>Delete</a></Button></td>
+            
 
-            if ($connection->query($sql) === TRUE) {
-                echo "successfully";
-               
-               
-             
-            } 
-            while ($row = mysqli_fetch_assoc($result)) {
-                $id = $row["Product_ID"];
-                echo "<tr> 
-                    <td>" .$id. "</td>
-                    
-                    <td>" .$row["Prod_Name"]. "</td>
-                    <td>" .$row["Prod_Description"]."</td>
-                    <td>" .$row["Company"]."</td>
-                    <td>" .$row["Price"]. "</td>
-                    <td>" .$row["Quantity"]. "</td>
+            <td><Button><a href='addtocart.php?addedid=".$id."'>Add to Cart</a></Button></td>
+            <td><Button><a href='displayreview.php?reviewid=".$id."'>reviews</a></Button></td>
+
+        </tr>"
+?>
+   
+<?php 
+    }
+    $connection->close();
+?>
 
 
-                    
-                    <td><Button><a href='delete_prod.php?deleteid=".$id."'>Delete</a></Button></td>
-                    
-
-                    <td><Button><a href='addtocart.php?addedid=".$id."'>Add to Cart</a></Button></td>
-                    <td><Button><a href='displayreview.php?reviewid=".$id."'>reviews</a></Button></td>
-
-                </tr>"
-        ?>
-           
-        <?php 
-            }
-            $connection->close();
-        ?>
 
         
-    </table>
+</table>
     
   
 
@@ -99,3 +97,4 @@
 <script src="app.js"></script>
 
 </html>
+    
