@@ -3,7 +3,7 @@
 
     $Product_ID = $_GET['editid'];
 
-    $retrieve =  "SELECT * FROM Products where Product_ID = $Product_ID";
+    $retrieve =  "SELECT * FROM Products where Product_ID = '$Product_ID'";
     $result2 = mysqli_query($connection, $retrieve);
     $designated_row = mysqli_fetch_assoc($result2);
 
@@ -26,23 +26,30 @@
         $prod_quantity = $_POST["quantity"];
     
     
-        $sql = "UPDATE Products 
-                SET Product_ID = $Product_ID, Seller_ID = $sellerid, Seller_Email = '$selleremail', Prod_Name = '$prod_name', Prod_Description = '$prod_desc', 
-                Company = '$company', price = '$prod_price', 
-                    quantity = $prod_quantity
-                WHERE Product_ID = $Product_ID";
+        $sql = "UPDATE Product_Information 
+                SET Product_ID = '$Product_ID', Prod_Name = '$prod_name', Prod_Description = '$prod_desc', 
+                Company = '$company', Price = '$prod_price', 
+                    Quantity = '$prod_quantity'
+                WHERE Product_ID = '$Product_ID'";
     
     
         $result = mysqli_query($connection, $sql);
     
         if($result){
-          echo "Successful";
-          header("Location: home.php");
-        }
-      }
-    
-    
+            $sql2 = "UPDATE Product_Seller_Information 
+                    SET Product_ID = '$Product_ID', Seller_ID = '$sellerid', Seller_Email = '$selleremail')
+                    WHERE Product_ID = '$Product_ID';";
 
+                    $result2 = mysqli_query($connection, $sql2);
+
+                    if($result2){
+                        echo "Successful";
+                        header("Location: home.php");
+                      
+                    }
+          }
+      }
+      $connection->close();
 
 ?>
 
@@ -83,7 +90,7 @@
             <label for="prod-description">Quantity:</label>
             <input type="text" name="quantity" value=<?php echo $designated_row['quantity'];?>>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Update</button>
             <a href="/431_DBMS/home.php">home</a>
             </form>
         

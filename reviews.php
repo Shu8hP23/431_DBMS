@@ -1,6 +1,8 @@
 <?php
     include 'config.php';
 
+    $temp = 0;
+
     $userid = $_POST['userid'];
     $prod_id = $_POST['product_id'];
     $rating = $_POST['rating'];
@@ -8,36 +10,32 @@
     $time = $_POST['time'];
     
 
-    $countquery = "SELECT COUNT(*) as countme FROM Reviews";
-    $result23 = mysqli_query($connection, $countquery);
+    $counter = "SELECT * FROM Reviews";
+    $result = mysqli_query($connection, $counter);
+
+    if($result){
+        $rowcounter = mysqli_num_rows($result);
+
+        printf("Total rows : %d\n", $rowcounter);
+
+        $rowcounter = $rowcounter + 1;
+        printf("Total rows : %d\n", $rowcounter);
+
+        $temp = $rowcounter;
+        printf("Total rows : %d\n", $temp);
+        
+    }
     
 
-    $row = mysqli_fetch_assoc($result23);
-    $count = $row['countme'];
-
-    // echo "Count of records in ReviewInformation: $count\n";
-
-    $increment = ($count + 1); // don't use this... use auto increment
-    // so you dont have to worry about it.
-
-    echo "New Count: $increment <br>";
-    echo "New rating: $rating <br>";
-    echo "New content: $content<br>";
-    echo "New time: $time <br>";
+    $sql3 = "INSERT INTO Reviews (Review_ID, User_ID, Product_ID)
+    VALUES ('$temp', '$userid', '$prod_id');";
 
 
-    echo "New Count 2: $increment <br>";
-    echo "New userid 2: $userid <br>";
-    echo "New product 2: $prod_id <br>";
-
-    $query = "INSERT INTO Reviews(User_ID, Product_ID)
-    VALUES($userid, $prod_id)"; 
-
-    $result = mysqli_query($connection, $query);
+    $result15 = mysqli_query($connection, $sql3);
     
-    if ($result) {
-        $query2 = "INSERT INTO Review_Information(Rating, Content, MyTime) 
-        VALUES ($rating, '$content', '$time')";
+    if ($result15) {
+        $query2 = "INSERT INTO Review_Information(Review_ID, Rating, Content, MyTime) 
+        VALUES ('$temp', '$rating', '$content', '$time')";
 
         $result2 = mysqli_query($connection, $query2);
 

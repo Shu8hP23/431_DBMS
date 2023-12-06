@@ -26,7 +26,7 @@
         if ($connection->query($sql2) === TRUE) {
             echo "Added Product Seller Info Successfully.";
            
-            header("Location: profile.php");
+            header("Location: home.php");
     
         } else {
             echo "Error: " . $sql2 . "<br>" . $connection->error;

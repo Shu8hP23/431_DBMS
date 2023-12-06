@@ -31,8 +31,7 @@
  
 
     <div style="margin-top: 20px;">
-        <button id="checkoutFail"><a href="">Checkout (Fail)</a></button>
-        <button id="checkoutFail"><a href="checkout-success.php">Checkout (Success)</a></button>
+        <button id="checkoutFail"><a href="checkout-success.php">Checkout</a></button>
     </div>
 
     <section>
@@ -57,6 +56,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Delete</th>
 
 
                 </tr>
@@ -69,14 +69,14 @@
                 $total = 0;
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        
+                        $id = $row["Product_ID"];
                         $total +=  $row["Price"] * $row["TotalQuantity"];
                         echo "<tr> 
                                 <td>" . $row["Prod_Name"] . "</td>
                                 <td>" . $row["Price"] . "</td>
                                 <td>" . $row["TotalQuantity"] . "</td>
                                 <td>" . $row["TotalPrice"] . "</td>
-                                
+                                <td><button><a href='cart-delete.php?deleteid=".$row["Prod_Name"]."'>Delete</a></button></td>
                             </tr>";
                     }
                 } else {

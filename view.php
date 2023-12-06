@@ -44,8 +44,6 @@
 
             if ($connection->query($sql) === TRUE) {
                 echo "New record created successfully";
-               
-               
              
             } 
             while ($row = mysqli_fetch_assoc($result)) {

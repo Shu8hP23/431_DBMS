@@ -42,15 +42,15 @@
                     </th>
                 </tr>
                 <tr>
+                    <th>Order ID</th>
                     <th>Product Name</th>
-                    <th>Total Price</th>
-                    <th>Total Quantity</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
                     <th>Return</th>
                 </tr>
                 <?php
                 include 'config.php';
-                $sql = "SELECT Prod_Name, SUM(Price) as TotalPrice, SUM(Quantity) as TotalQuantity FROM Order_History_Information
-                GROUP BY Prod_Name;";
+                $sql = "SELECT * FROM Order_History_Information;";
     
                 $result = mysqli_query($connection, $sql);
 
@@ -59,11 +59,51 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                     
                         echo "<tr> 
+                                <td>" . $row["Order_ID"] . "</td>
                                 <td>" . $row["Prod_Name"] . "</td>
-                                <td>" . $row["TotalPrice"] . "</td>
-                                <td>" . $row["TotalQuantity"] . "</td>
+                                <td>" . $row["Price"] . "</td>
+                                <td>" . $row["Quantity"] . "</td>
 
-                                <td><Button><a href='return.php?updateid=".$id."'>Return</a></Button></td>
+                                <td><Button><a href='return.php?orderid=".$row["Order_ID"]."&nameto=".$row["Prod_Name"]."'>Return</a></Button></td>
+                                
+                            </tr>";
+                    }
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+                }
+
+                $connection->close();
+                ?>
+            </table>
+
+            <table align="center" border="1px" style="width:600px; line-height:40px">
+                <tr>
+                    <th colspan="8">
+                        <h2>Return Order</h2>
+                    </th>
+                </tr>
+                <tr>
+                    
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Status</th>
+                </tr>
+                <?php
+                include 'config.php';
+                $sql = "SELECT * FROM Return_Order;";
+    
+                $result = mysqli_query($connection, $sql);
+
+                $total = 0;
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    
+                        echo "<tr> 
+                                
+                                
+                                <td>" . $row["Order_ID"] . "</td>
+                                <td>" . $row["Prod_Name"] . "</td>
+                                <td>" . $row["Status"] . "</td>
                                 
                             </tr>";
                     }
@@ -76,7 +116,7 @@
             </table>
 
             <div style="margin-top: 20px;">
-            <h2>Your Order History</h2>
+            
             <table align="center" border="1px" style="width:600px; line-height:40px">
                 <tr>
                     <th colspan="8">
@@ -84,10 +124,10 @@
                     </th>
                 </tr>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Total Price</th>
-                    <th>Total Quantity</th>
-                    <th>Return</th>
+                    <th>Ticket Number</th>
+                    <th>User ID</th>
+                    <th>Order ID</th>
+                    <th>Message</th>
                 </tr>
                 <?php
                 include 'config.php';

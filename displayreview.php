@@ -26,54 +26,57 @@
 
 <body>
 
-
-    
-
-    <table align="center" border="1px" style="width:600px; line-height:40px">
+    <table align="center" border="1px" style="width:800px; line-height:40px">
         <tr>
-            <th colspan="11"><h2>List of Products</h2></th>
+            <th colspan="11"><h2>Reviews Submitted for this Product</h2></th>
         </tr>
         <tr>
             <th>Product ID</th>
-            <
-            <th>Name</th>
-            <th>Description</th>
-            <th>Company</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Delete</th>
-            <th>Add</th>
-            <th>Review</th>
-            
+            <th>Product Name</th>
+            <th>Seller's Email</th>
+            <th>User's First Name</th>
+            <th>User's Last Name</th>
+            <th>Review Rating</th>
+            <th>Review Content</th>
         </tr>
 <?php
     include 'config.php';
 
     $id = $_GET['reviewid'];
 
-    $query = "SELECT * FROM Reviews, Review_Information
-    WHERE Reviews.ReviewID = '$id'";
+    $query = "SELECT
+                PI.Product_ID AS myProductID,
+                PI.Prod_Name AS myProductName,
+                PSI.Seller_Email AS mySellerEmail,
+                U.First_Name AS writerFirstName,
+                U.Last_Name AS writerLastName,
+                RI.Rating AS reviewRating,
+                RI.Content AS reviewContent
+            FROM
+                Product_Information PI
+            JOIN
+                Product_Seller_Information PSI ON PI.Product_ID = PSI.Product_ID
+            JOIN
+                Reviews R ON PI.Product_ID = R.Product_ID
+            JOIN
+                Users U ON R.User_ID = U.Usernum
+            JOIN
+                Review_Information RI ON R.Review_ID = RI.Review_ID
+            WHERE
+                PI.Product_ID = '$id';";
 
     $result = mysqli_query($connection, $query);
     
     while ($row = mysqli_fetch_assoc($result)) {
         $id = $row["Product_ID"];
         echo "<tr> 
-            <td>" .$id. "</td>
-            
-            <td>" .$row["Prod_Name"]. "</td>
-            <td>" .$row["Prod_Description"]."</td>
-            <td>" .$row["Company"]."</td>
-            <td>" .$row["Price"]. "</td>
-            <td>" .$row["Quantity"]. "</td>
-
-
-            
-            <td><Button><a href='delete_prod.php?deleteid=".$id."'>Delete</a></Button></td>
-            
-
-            <td><Button><a href='addtocart.php?addedid=".$id."'>Add to Cart</a></Button></td>
-            <td><Button><a href='displayreview.php?reviewid=".$id."'>reviews</a></Button></td>
+            <td>" .$row["myProductID"]. "</td>
+            <td>" .$row["myProductName"]."</td>
+            <td>" .$row["mySellerEmail"]."</td>
+            <td>" .$row["writerFirstName"]. "</td>
+            <td>" .$row["writerLastName"]. "</td>
+            <td>" .$row["reviewRating"]. "</td>
+            <td>" .$row["reviewContent"]. "</td>
 
         </tr>"
 ?>
